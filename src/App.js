@@ -47,12 +47,11 @@ function App() {
 
       <ProductList products={products} addToCart={addToCart} />
 
-     {isCartOpen && (
-  <CartModal
-    cart={cart}
-    closeModal={() => setIsCartOpen(false)}
-    removeFromCart={removeFromCart}
-  />
+     <CartModal
+  cart={cart}
+  closeModal={() => setIsCartOpen(false)}
+  removeFromCart={removeFromCart}
+/>
 
 
 
