@@ -1,7 +1,7 @@
 function CartModal({ cart, closeModal, removeFromCart }) {
   return (
-    <div className="Modal">
-      <div className="modal">
+    <div className="Modal" onClick={closeModal}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h2>Cart Items</h2>
 
         {cart.length === 0 && <p>No items in the cart</p>}
@@ -17,7 +17,7 @@ function CartModal({ cart, closeModal, removeFromCart }) {
           </div>
         ))}
 
-        <button onClick={closeModal} className="close-button">
+        <button className="close-button" onClick={closeModal}>
           Close
         </button>
       </div>
