@@ -12,13 +12,13 @@
   grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
   gap:20px;
   padding: 90px;
-
 }
 
 .card img{
   height: 100px;
   object-fit: cover;
 }
+
 .card{
   padding: 30px;
   border: 4px solid rgb(142, 30, 49);
@@ -29,36 +29,61 @@
   background-color: black;
   color: white;
   padding:10px;
+  cursor: pointer;
 }
 
+
+/* ================= MODAL FIX START ================= */
+
 .Modal{
-  position: relative;
+  position: fixed;           /* 🔥 changed from relative to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;             /* full screen height */
+  background-color: rgba(0,0,0,0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.5);
-  inset: 0;
 
+  z-index: 1000;             /* keeps it above everything */
 }
+
 .modal{
   background: white;
   padding: 20px;
   width: 90%;
   max-width: 500px;
-
+  border-radius: 10px;
+  max-height: 80vh;
+  overflow-y: auto;          /* scroll if items are many */
 }
+
 .cart-Modal{
   display: flex;
   align-items: center;
   gap:20px;
+  margin-bottom: 15px;
 }
 
-  .cart-Modal img{
-    height: 50px;
+.cart-Modal img{
+  height: 50px;
+  object-fit: contain;
+}
 
-  }
+.close-button{
+  background-color:red;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 6px;
+}
 
-  .close-button{
-    background-color:red;
-    
-  }
+.close-button:hover{
+  background-color: darkred;
+}
+
+/* ================= MODAL FIX END ================= */
