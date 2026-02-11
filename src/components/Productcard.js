@@ -1,15 +1,19 @@
-function Productcard({product, addToCart}){
-    return(
-        <div className="card">
-            {/* display the prodict image*/}
-            <img src={product.image} />
-            {/* product title*/}
-            <h4>{product.title}</h4>
-            <p>Rs.{product.price}</p>
-            {/*add to cart button*/}
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-        </div>
-    )
+function Productcard({ product, addToCart }) {
+  return (
+    <div className="card">
+      <img
+        src={product.image}
+        alt={product.title}
+      />
 
+      <h3>{product.title}</h3>
+      <p>${product.price}</p>
+
+      <button onClick={() => addToCart(product)}>
+        Add to Cart
+      </button>
+    </div>
+  );
 }
+
 export default Productcard;
