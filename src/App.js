@@ -1,41 +1,40 @@
 import Navbar from "./components/navbar";
 import CartModal from "./components/Cartmodal";
 import ProductList from "./components/Productslist";
-import './App.css';
+import "./App.css";
 import { useEffect, useState } from "react";
 
 function App() {
-  // state to store the products
+  // Store products
   const [products, setProducts] = useState([]);
 
-  // state to store the cart items
+  // Store cart items
   const [cart, setCart] = useState([]);
 
-  // state to store the Modal visibility
+  // Control modal visibility
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // fetch the products from the fake store api
+  // Fetch products
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
-  // function to add product to the cart
+  // Add to cart
   const addToCart = (product) => {
     const exists = cart.find((item) => item.id === product.id);
+
     if (exists) {
-      alert("Item is already in the cart");
+      alert("Item already in cart");
     } else {
-      setCart([...cart, product]);
+      setCart((prev) => [...prev, product]);
     }
   };
 
-  // function to remove from cart
+  // Remove from cart
   const removeFromCart = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
-
-    
+    setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
@@ -45,16 +44,18 @@ function App() {
         openCart={() => setIsCartOpen(true)}
       />
 
-      <ProductList products={products} addToCart={addToCart} />
+      <ProductList
+        products={products}
+        addToCart={addToCart}
+      />
 
-     <CartModal
-  cart={cart}
-  closeModal={() => setIsCartOpen(false)}
-  removeFromCart={removeFromCart}
-/>
-
-
-
+      {/* ✅ IMPORTANT: Conditional Rendering */}
+      {isCartOpen && (
+        <CartModal
+          cart={cart}
+          closeModal={() => setIsCartOpen(false)}
+          removeFromCart={removeFromCart}
+        />
       )}
     </div>
   );
